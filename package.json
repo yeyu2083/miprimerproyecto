@@ -1,0 +1,25 @@
+{
+  "name": "miproyecto",
+  "version": "1.0.0",
+  "description": "mi primera pagina dinamica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeyu2083/miprimerproyecto.git"
+  },
+  "author": "by Yesi Windecker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeyu2083/miprimerproyecto/issues"
+  },
+  "homepage": "https://github.com/yeyu2083/miprimerproyecto#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "nodemon": "^2.0.19"
+  }
+}

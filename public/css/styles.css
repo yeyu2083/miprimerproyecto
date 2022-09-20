@@ -48,19 +48,37 @@ header h1 {
 }
 /*nav*/
 nav ul li {
-    display: inline;
     list-style-type: none;
-    
+    text-transform: none;
+    padding: 5px;
+ 
+
 }
-nav ul li a {
-    text-decoration: none;
-    color: black; 
-    padding: .4rem;   
-}
+
+
+.menu > li {
+ 
+    display: inline-flex;
+     position: relative;
+     padding: 2rem;
+ 
+
+    }
+
+ .submenu{
+    position: absolute;
+    top: 50px;
+    left: 20px;
+ }
+ 
+
+
 nav ul li a:hover {
     background-color: rgb(242, 205, 111);
     color: white;
-    border-radius: 5px;
+    border-radius: 5px; 
+  
+
 }
 .nav-home {
      transition-property: transform color;
@@ -170,13 +188,16 @@ section a:hover {
 /* Footer */
 footer {
     grid-area: footer;
-    display: flex;
+    display: inline-flex;
     justify-content: center;  
      margin: 50px;
      width: 91%;
      background-color: #9c9c9c;
+     
 
 }
+    
+
 /* formulario de contacto */
 .lista { 
     list-style-type: none;
