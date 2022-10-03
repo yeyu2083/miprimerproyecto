@@ -1,0 +1,41 @@
+     
+  <div class="box">
+     
+      <h1>Informacion de tu cuenta</h1>
+      <p>Ultima modifacion: {{user.updatedAt}}</p>
+      {{#if user.validated}}
+      <p>Cuenta validada</p>
+      {{else}}
+      <p>Cuenta no validada</p>
+      {{/if}}
+    
+    <form action="/users/settings" method="POST">
+      <div class="user-box">
+        <label for="name"></label>
+        <input name="name" type="text"  id="name" autocomplete="name" value="{{user.name}}">
+      </div>
+      <div class="user-box">
+        <label for="lastName"></label>
+        <input name="lastName" type="text" id="lastName" autocomplete="additional-name"
+          value="{{user.lastName}}">
+      </div>
+      <div class="user-box">
+        <label for="email" ></label>
+        <input name="email" type="text"  id="email" autocomplete="email" value="{{user.email}}">
+      </div>
+      {{#if message}}
+      
+        
+        <div>
+          {{message}}
+        </div>
+      
+      {{/if}}
+      <div class="user-box">
+        <input type="submit" class="submit" value="Are you sure?" />
+        <a href="/users/delete" type="button" class="submit">Borrar Cuenta</a>
+        <a href="/" class="submit">Cancelar</a>
+      </div>
+    </form>
+    </div>
+  

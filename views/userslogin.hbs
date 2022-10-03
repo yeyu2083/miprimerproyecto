@@ -1,4 +1,38 @@
- <div class="d-flex justify-content-between">
-        <input type="submit" class="btn btn-success " value="Already have an account" />
-        <a href="/users/register" class="btn btn-warning ">I don't have an account</a>
-      </div>
+               <div class="box">
+                <h2>Login</h2>
+               
+
+                 <form action="/users/login"  method="POST">
+              
+                 <div class="user-box">
+                
+                  <label for="email"></label>
+                 <input type="email" name="email" id="email" placeholder="Email"   autocomplete="username" autofocus>
+                 
+                 </div>
+                 <div class="user-box">    
+
+                   <label for="pass"></label>
+                   <input type="password" name="pass" id="pass" placeholder="Contraseña">
+                 
+                 </div>
+               
+                 {{#if message}}
+        
+                         <div>
+                       {{message}}
+                        </div>       
+         
+                 {{/if}}
+      
+                  <div class="button-form">
+                  <input type="submit"  value="Ingresa" class="submit"/>
+                  </div>
+                  <div class="register"> No tienes cuenta?
+                  <a href="/users/register">Registrese </a>
+                   </div>
+                </form> 
+
+               </div>
+
+{{>footer}}
