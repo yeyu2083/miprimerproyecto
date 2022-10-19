@@ -1,11 +1,13 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 const users = require("../controllers/userCt");
-const auth = require("../config/mongo")
-/* const  validationRules = require("../validators/validations.js")    */
+const auth = require("../config/mongo");
+const validationRules = require("../validators/validations");
+
+
 
 router.get("/contact", users.mailMessage)
-/* router.post("/contact",validationRules, users.validateEmail)  */
+router.post("/contact", validationRules, users.validateEmail) 
 router.get("/login", users.getLoginForm)
 router.post("/login", users.sendLoginForm)
 router.get("/register", users.getRegisterForm)

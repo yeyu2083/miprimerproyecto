@@ -1,10 +1,14 @@
-/*  const validator = require("express-validator");
+  const validator = require("express-validator");
  const { body, validationResult } = validator;
 
 
 
   const validationRules = [
         body("name")
+        .notEmpty().withMessage("Campo obligatorio")
+        .isLength({ min:2, max: 30}).withMessage("minimo 2 caracteres, maximo 30 caracteres "),
+
+         body("lastName")
         .notEmpty().withMessage("Campo obligatorio")
         .isLength({ min:2, max: 30}).withMessage("minimo 2 caracteres, maximo 30 caracteres "),
 
@@ -32,4 +36,4 @@
 
 module.exports = validationRules  ; 
 
-   */
+   

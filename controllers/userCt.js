@@ -1,7 +1,9 @@
 const securePass = require("../helpers/securePass");
 const User = require("../schemas/userSchemas");
-/* const transport = require("../config/mongo");
- */
+const nodemailer = require("nodemailer");
+require("dotenv").config();
+
+
 
 
 function getLoginForm(req, res, next) {
@@ -85,12 +87,12 @@ async function userdelete(req, res) {
 
 };
 
-       function mailMessage (req, res, next) {
+       function mailMessage (req, res) {
         res.render("contact")
      };
 
 
-    /*    async function validateEmail (req, res, next) {
+    async function validateEmail (req, res) {
 
     const {name, lastName, email, message} = req.body 
 
@@ -100,9 +102,18 @@ async function userdelete(req, res) {
         subject: "Mensaje de formulario de contacto",
         html: `Contacto de ${name} ${lastName}: ${message}`
     }
-   
-    const sendMailStatus = await transport.sendMail(emailMsg);
-
+    
+    const  transport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: process.env.user ,
+      pass: process.env.pass
+    }
+  });
+    
+     const sendMailStatus = await transport.sendMail(emailMsg);
+ console.log(sendMailStatus);
     if(sendMailStatus.rejected.length) {
       req.app.locals.sendMailFeedback = " No se pudo enviar";
     } else {
@@ -110,11 +121,11 @@ async function userdelete(req, res) {
     }
      res.redirect("/");
   };
-   */
-
+    
+ 
 function logout(req, res) {
     req.session.destroy()
     res.redirect("/")
 }
-module.exports = { getLoginForm, sendLoginForm, getRegisterForm, sendRegisterForm ,sendSettings, mailMessage, logout, settings, userdelete }
+module.exports = { getLoginForm, sendLoginForm, getRegisterForm, sendRegisterForm ,sendSettings, mailMessage, validateEmail, logout, settings, userdelete }
 

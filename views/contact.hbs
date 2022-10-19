@@ -5,15 +5,18 @@
                 <li>
                   {{sendMailFeedback}}
                         <label for="name"></label>
-                        <input type="text" name="name" id="name" placeholder="Nombre y Apellido"
+                        <input type="text" name="name" id="name" placeholder="Nombre"
+                    </li>
                     <li>
-              
+                     <label for="lastName"></label>
+                        <input type="text" name="lastName" id="lastName" placeholder="Apellido" value="{{formData.lastName}}" >
+                    </li>
+                       <li>
                      <li>
                         <label for="email"></label>
                         <input type="email" name="email"  id="email" placeholder="Email" value="{{formData.email}}">
                      </li>
                   
-                       <li>
                         <label for="textarea"></label>
                         <textarea name="textarea" id="textarea" cols="30" rows="10" placeholder="Su mensaje aqui"></textarea>
                      </li>

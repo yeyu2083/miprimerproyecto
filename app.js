@@ -52,7 +52,7 @@ app.get("/noAuth", (req, res)=>{
     res.render("noAuth")
 })
 
- app.use("/users", require("./routes/usersRt") )
+ app.use("/users",  require("./routes/usersRt") ) 
 
 app.listen(PORT, (err) => {
     err? console.log((`Error:${err}`))
