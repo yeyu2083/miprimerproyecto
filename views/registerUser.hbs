@@ -3,20 +3,25 @@
           <form action="/users/register" method="POST">
                 <ul class="user-box"> 
                 <li>
+                  {{sendMailFeedback}}
                         <label for="name"></label>
-                        <input type="text" name="name" id="name" placeholder="Nombre"  autofocus>
+                        <input type="text" name="name" id="name" placeholder="Nombre"  autofocus value="{{formData.name}}">
                     </li>
                     <li>
                      <label for="lastName"></label>
-                        <input type="text" name="lastName" id="lastName" placeholder="Apellido" >
+                        <input type="text" name="lastName" id="lastName" placeholder="Apellido" value="{{formData.lastName}}" >
                     </li>
                      <li>
                         <label for="email"></label>
-                        <input type="email" name="email"  id="email" placeholder="Email">
+                        <input type="email" name="email"  id="email" placeholder="Email" value="{{formData.email}}">
                      </li>
                     <li>
                         <label for="pass"></label>
                         <input type="password"  name="pass" id="pass" placeholder="Contraseña" >
+                     </li>
+                       <li>
+                        <label for="message"></label>
+                        <textarea name="message" id="message" cols="30" rows="10"></textarea>
                      </li>
                      </ul>
                      {{#if message}}
@@ -25,6 +30,9 @@
                     {{message}}
                       </div>
                     {{/if}}
+                    {{#each arrWarnings}}
+                    <p>{{ msg }}</p>
+                    {{/each}}
                      <div class="user-box">   
                         <label for="submit"></label>
                         <input type="submit" class="submit" value="Registrese">
@@ -32,9 +40,5 @@
                     </form>
                      </div>
           
-                <div class="imgform">
-                    <img class="imagen" src="/images/pexels-scott-webb-403571.jpg" alt="diseño grafico">
-                </div>
-         
 
 

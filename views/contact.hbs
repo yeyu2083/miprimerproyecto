@@ -1,5 +1,28 @@
-            <ul  class="lista">
-             
-                <li><a href="/users/login">Login</a></li>
-                <li><a href="/users/register"></a>Registrarse</li>
-            </ul>
+
+           <div class="box">
+          <form action="/users/contact" method="POST">
+                <ul class="user-box"> 
+                <li>
+                  {{sendMailFeedback}}
+                        <label for="name"></label>
+                        <input type="text" name="name" id="name" placeholder="Nombre y Apellido"
+                    <li>
+              
+                     <li>
+                        <label for="email"></label>
+                        <input type="email" name="email"  id="email" placeholder="Email" value="{{formData.email}}">
+                     </li>
+                  
+                       <li>
+                        <label for="textarea"></label>
+                        <textarea name="textarea" id="textarea" cols="30" rows="10" placeholder="Su mensaje aqui"></textarea>
+                     </li>
+                     </ul>
+                     <input type="submit" value="enviar">
+                     
+                      <div>
+                    {{message}}
+                      </div>
+          </form>
+
+           </div>

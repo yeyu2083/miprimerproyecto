@@ -1,5 +1,8 @@
 const securePass = require("../helpers/securePass");
-const User = require("../schemas/userSchemas")
+const User = require("../schemas/userSchemas");
+/* const transport = require("../config/mongo");
+ */
+
 
 function getLoginForm(req, res, next) {
     res.render("usersLogin")
@@ -30,26 +33,26 @@ function getRegisterForm(req, res, next) {
 
 };
 
-async function sendRegisterForm(req, res, next) {
-    const {name, lastName, email, pass} = req.body 
-    const password = await securePass.encrypt(pass)
-
-
-const newUser = new User({
-    name, lastName, email, password
-})
- 
+async function sendRegisterForm (req, res, next) {
+ const {name, lastName, email, pass} = req.body 
+   
     
-newUser.save((err) => {
-    if(!err) {
-        req.session.user = `${name} ${lastName} `
-        res.render("secret", {user: req.session.user})
-       
-    }else {
-      res.render("registerUser", { message: "Ya existe ese registro"})
-    }
-})
-};
+    const password = await securePass.encrypt(pass)
+    const newUser = new User({name, lastName, email, password})
+      newUser.save((err) => {
+        if(!err) {
+            req.session.user = `${name} ${lastName} `
+            res.render("secret", {user: req.session.user})
+           
+        }else {
+          res.render("registerUser", { message: "Ya existe ese registro"})
+        }
+    })
+}
+ 
+
+
+
 async function settings(req, res) {
 
     const user = await User.findById(req.session.user.id).lean()
@@ -82,17 +85,36 @@ async function userdelete(req, res) {
 
 };
 
+       function mailMessage (req, res, next) {
+        res.render("contact")
+     };
 
 
+    /*    async function validateEmail (req, res, next) {
 
-async function validate(req, res) {
-    res.render("verificacion en data base")
+    const {name, lastName, email, message} = req.body 
 
-};
+    const emailMsg = {
+        to: "atencioncliente@nuestraempresa.com",
+        from: email,
+        subject: "Mensaje de formulario de contacto",
+        html: `Contacto de ${name} ${lastName}: ${message}`
+    }
+   
+    const sendMailStatus = await transport.sendMail(emailMsg);
+
+    if(sendMailStatus.rejected.length) {
+      req.app.locals.sendMailFeedback = " No se pudo enviar";
+    } else {
+       req.app.locals.sendMailFeedback = "Mensaje enviado con exito"
+    }
+     res.redirect("/");
+  };
+   */
 
 function logout(req, res) {
     req.session.destroy()
     res.redirect("/")
 }
-module.exports = { getLoginForm, sendLoginForm, getRegisterForm, sendRegisterForm, sendSettings,  logout, settings, validate, userdelete }
+module.exports = { getLoginForm, sendLoginForm, getRegisterForm, sendRegisterForm ,sendSettings, mailMessage, logout, settings, userdelete }
 

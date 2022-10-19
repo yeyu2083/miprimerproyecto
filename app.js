@@ -2,17 +2,19 @@ require("./config/mongo")
 const session = require("express-session")
 const path = require("path");
 const express = require("express");
-const auth = require("./validators/validations")
+const auth = require("./config/mongo");
 const PORT = 3000
 const app = express()
 
 const hbs = require("express-handlebars");
 
+app.locals.sendMailFeedback 
+
 app.use(session({
     secret:process.env.SESSION_PRIVATE,
     resave:true,
-    saveUninitialized: false
-
+    saveUninitialized: false,
+    
 }))
 
 app.engine('hbs', hbs.engine( { extname: 'hbs'}));
@@ -25,11 +27,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 
-app.get("/", (req, res) => {
+app.get("/",(req, res) => {
     res.render("home", { user: req.session.user })
 
     
 });
+app.get("/contact", (req, res) =>{
+    res.render("contact")
+})
 app.get("/about", (req, res) => {
    res.render("about")
 })
@@ -46,7 +51,8 @@ app.get("/secret", auth ,(req, res) => {
 app.get("/noAuth", (req, res)=>{
     res.render("noAuth")
 })
- app.use("/users", require("./routes/usersRt"))
+
+ app.use("/users", require("./routes/usersRt") )
 
 app.listen(PORT, (err) => {
     err? console.log((`Error:${err}`))

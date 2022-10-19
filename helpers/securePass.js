@@ -9,4 +9,6 @@ const decrypt = async(pass, hashedPass) => {
 
 }
 
-module.exports = { encrypt, decrypt};
+
+ 
+module.exports = { encrypt, decrypt };
